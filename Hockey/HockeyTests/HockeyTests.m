@@ -2,7 +2,7 @@
 //  HockeyTests.m
 //  HockeyTests
 //
-//  Created by Girardin, Arnaud on 17-09-21.
+//  Created by Girardin, Arnaud on 17-09-22.
 //  Copyright © 2017 Girardin, Arnaud. All rights reserved.
 //
 

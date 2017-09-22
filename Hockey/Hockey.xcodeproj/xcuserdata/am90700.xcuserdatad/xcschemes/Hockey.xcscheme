@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87E841551F743A5600ED12B2"
+               BlueprintIdentifier = "8739DCCE1F756D7E001C12F9"
                BuildableName = "Hockey.app"
                BlueprintName = "Hockey"
                ReferencedContainer = "container:Hockey.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87E8416E1F743A5600ED12B2"
+               BlueprintIdentifier = "8739DCE71F756D7F001C12F9"
                BuildableName = "HockeyTests.xctest"
                BlueprintName = "HockeyTests"
                ReferencedContainer = "container:Hockey.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87E841791F743A5600ED12B2"
+               BlueprintIdentifier = "8739DCF21F756D7F001C12F9"
                BuildableName = "HockeyUITests.xctest"
                BlueprintName = "HockeyUITests"
                ReferencedContainer = "container:Hockey.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "87E841551F743A5600ED12B2"
+            BlueprintIdentifier = "8739DCCE1F756D7E001C12F9"
             BuildableName = "Hockey.app"
             BlueprintName = "Hockey"
             ReferencedContainer = "container:Hockey.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "87E841551F743A5600ED12B2"
+            BlueprintIdentifier = "8739DCCE1F756D7E001C12F9"
             BuildableName = "Hockey.app"
             BlueprintName = "Hockey"
             ReferencedContainer = "container:Hockey.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "87E841551F743A5600ED12B2"
+            BlueprintIdentifier = "8739DCCE1F756D7E001C12F9"
             BuildableName = "Hockey.app"
             BlueprintName = "Hockey"
             ReferencedContainer = "container:Hockey.xcodeproj">
