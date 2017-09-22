@@ -17,6 +17,7 @@
 		8739DCF81F756D7F001C12F9 /* HockeyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8739DCF71F756D7F001C12F9 /* HockeyUITests.m */; };
 		8739DD061F757387001C12F9 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8739DD051F757387001C12F9 /* CustomCell.xib */; };
 		8739DD0A1F757528001C12F9 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8739DD091F757528001C12F9 /* CustomCell.m */; };
+		8739DD121F75872A001C12F9 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8739DD111F75872A001C12F9 /* digital-7.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		8739DD051F757387001C12F9 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCell.xib; path = ../CustomCell.xib; sourceTree = "<group>"; };
 		8739DD081F757528001C12F9 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		8739DD091F757528001C12F9 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		8739DD111F75872A001C12F9 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "digital-7.ttf"; path = "../../../../Downloads/digital-7 3/digital-7.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		8739DCD11F756D7E001C12F9 /* Hockey */ = {
 			isa = PBXGroup;
 			children = (
+				8739DD101F758714001C12F9 /* Fonts */,
 				8739DD051F757387001C12F9 /* CustomCell.xib */,
 				8739DCD51F756D7E001C12F9 /* AppDelegate.h */,
 				8739DCD61F756D7E001C12F9 /* AppDelegate.m */,
@@ -146,6 +149,14 @@
 				8739DCF91F756D7F001C12F9 /* Info.plist */,
 			);
 			path = HockeyUITests;
+			sourceTree = "<group>";
+		};
+		8739DD101F758714001C12F9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8739DD111F75872A001C12F9 /* digital-7.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 				8739DCDF1F756D7E001C12F9 /* Assets.xcassets in Resources */,
 				8739DD061F757387001C12F9 /* CustomCell.xib in Resources */,
 				8739DCDD1F756D7E001C12F9 /* Main.storyboard in Resources */,
+				8739DD121F75872A001C12F9 /* digital-7.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
