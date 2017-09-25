@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+NSInteger NUM_PLAYERS = 5;
 
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
 

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomCell : UITableViewCell
-
-@property (nonatomic, weak) IBOutlet UITextField *field;
+- (IBAction)changeText:(UITextField *)sender;
+@property NSString *field;
 
 @end
+

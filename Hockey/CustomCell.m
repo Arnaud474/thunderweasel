@@ -22,4 +22,8 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)changeText:(UITextField *)sender {
+    NSLog(@"%@", sender.text);
+    _field = sender.text;
+}
 @end

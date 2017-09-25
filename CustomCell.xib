@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VaO-Ch-LNZ" id="V0H-YT-hGV">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="39.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Entrez le nom du joueur" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ch9-c8-oXw">
-                        <rect key="frame" x="0.0" y="-1" width="400" height="40"/>
+                        <rect key="frame" x="0.0" y="-1" width="400" height="39"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -29,6 +29,10 @@
                                 <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="changeText:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="43t-E8-pVQ"/>
+                            <action selector="field:" destination="VaO-Ch-LNZ" eventType="editingDidEnd" id="XJj-iP-mbL"/>
+                        </connections>
                     </textField>
                 </subviews>
             </tableViewCellContentView>
