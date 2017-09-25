@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *secondTeamTable;
 @property (weak, nonatomic) IBOutlet UILabel *period;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperPeriod;
+@property NSMutableArray *team1;
+@property NSMutableArray *team2;
 - (IBAction)startGame:(id)sender;
 - (IBAction)stepperPeriod:(UIStepper *)sender;
 @end
@@ -72,7 +74,6 @@
         
     }
     
-    
     return cell;
     
 }
@@ -84,10 +85,26 @@
     
     _stepperPeriod.hidden = NO;
     
+    //Init arrays
+    _team1 = [[NSMutableArray alloc] init];
+    _team2 = [[NSMutableArray alloc] init];
+    
     for(NSInteger i=0;i<5;i++){
-        CustomCell *cell = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+        
+        //Getting the cell at index
+        CustomCell *cell1 = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+        CustomCell *cell2 = [_secondTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+        
+        //Adding fields to array
+        [_team1 addObject:cell1.field];
+        [_team2 addObject:cell2.field];
+        
+        NSLog(@"Team 1 Player : %@", [_team1 objectAtIndex:i]);
+        NSLog(@"Team 2 Player : %@", [_team2 objectAtIndex:i]);
+        
         
     }
+    
     
 }
 

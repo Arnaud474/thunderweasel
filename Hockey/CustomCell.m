@@ -14,6 +14,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _field = @"";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
