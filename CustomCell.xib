@@ -30,8 +30,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="changeText:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="43t-E8-pVQ"/>
-                            <action selector="field:" destination="VaO-Ch-LNZ" eventType="editingDidEnd" id="XJj-iP-mbL"/>
+                            <action selector="changeText:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="6RS-C0-ygZ"/>
                         </connections>
                     </textField>
                 </subviews>

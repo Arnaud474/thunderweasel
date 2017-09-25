@@ -23,7 +23,6 @@
 }
 
 - (IBAction)changeText:(UITextField *)sender {
-    NSLog(@"%@", sender.text);
     _field = sender.text;
 }
 @end

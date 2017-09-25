@@ -84,13 +84,9 @@
     
     _stepperPeriod.hidden = NO;
     
-    
-    NSMutableArray *rows = [[NSMutableArray alloc] init];
-    
     for(NSInteger i=0;i<5;i++){
         CustomCell *cell = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
         
-        NSLog(@"%@", cell.field);
     }
     
 }
