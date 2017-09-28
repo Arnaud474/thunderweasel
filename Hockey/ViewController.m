@@ -18,6 +18,8 @@
 @property NSMutableArray *team2;
 - (IBAction)startGame:(id)sender;
 - (IBAction)stepperPeriod:(UIStepper *)sender;
+@property (weak, nonatomic) IBOutlet UITextField *firstTeamTitle;
+@property (weak, nonatomic) IBOutlet UITextField *secondTeamTitle;
 @end
 
 @implementation ViewController
@@ -89,9 +91,7 @@
 //Start game
 - (IBAction)startGame:(id)sender {
     NSLog(@"Start Game");
-    
-    _stepperPeriod.hidden = NO;
-    
+
     //Init arrays
     _team1 = [[NSMutableArray alloc] init];
     _team2 = [[NSMutableArray alloc] init];
@@ -101,6 +101,66 @@
         //Getting the cell at index
         CustomCell *cell1 = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
         CustomCell *cell2 = [_secondTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+        
+        //Validation
+        if (!_firstTeamTitle.text.length || !_secondTeamTitle.text.length){
+            UIAlertController* alert = [UIAlertController
+                                        alertControllerWithTitle:@"Information manquante"
+                                        message:@"Veuillez entrer les noms d'équipe pour commencer la partie"
+                                        preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                            style:UIAlertActionStyleDefault
+                                                                          handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:errorValidationAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+
+        }
+        else if (_firstTeamTitle.text == _secondTeamTitle.text){
+            UIAlertController* alert = [UIAlertController
+                                        alertControllerWithTitle:@"Information erronée"
+                                        message:@"Veuillez entrer des noms d'équipe différents"
+                                        preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                            style:UIAlertActionStyleDefault
+                                                                          handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:errorValidationAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }
+        else if (!cell1.field.length || !cell2.field.length){
+            UIAlertController* alert = [UIAlertController
+                                        alertControllerWithTitle:@"Information manquante"
+                                        message:@"Veuillez entrer tous les noms des joueurs pour commencer la partie"
+                                        preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:errorValidationAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }
+        else if ([_team1 containsObject:cell1.field] || [_team2 containsObject:cell2.field]){
+            UIAlertController* alert = [UIAlertController
+                                        alertControllerWithTitle:@"Information erronée"
+                                        message:@"Veuillez entrer des noms de joueurs différents au sein d'une même équipe"
+                                        preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                            style:UIAlertActionStyleDefault
+                                                                          handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:errorValidationAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+            
+        }
         
         //Adding fields to array
         [_team1 addObject:cell1.field];
@@ -113,9 +173,9 @@
         
         NSLog(@"Team 1 Player : %@", [_team1 objectAtIndex:i]);
         NSLog(@"Team 2 Player : %@", [_team2 objectAtIndex:i]);
-        
-        
     }
+                 
+    _stepperPeriod.hidden = NO;
     
     
 }

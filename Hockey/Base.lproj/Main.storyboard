@@ -74,7 +74,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Équipe 1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Z8-4a-iOf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Équipe 2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Z8-4a-iOf">
                                 <rect key="frame" x="692" y="176" width="400" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -114,8 +114,10 @@
                     </view>
                     <connections>
                         <outlet property="firstTeamTable" destination="Cv1-40-Ruc" id="jEO-oD-zpP"/>
+                        <outlet property="firstTeamTitle" destination="X7G-v9-QI6" id="cP6-QB-90X"/>
                         <outlet property="period" destination="QDt-Wl-MNG" id="oGk-Sh-Mdy"/>
                         <outlet property="secondTeamTable" destination="s36-2G-ehv" id="7eA-ZS-vxa"/>
+                        <outlet property="secondTeamTitle" destination="0Z8-4a-iOf" id="Usd-Bb-1xP"/>
                         <outlet property="stepperPeriod" destination="TsX-nK-N5E" id="KrP-o7-Ku4"/>
                     </connections>
                 </viewController>
