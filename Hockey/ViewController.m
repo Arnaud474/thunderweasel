@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "CustomCell.h"
+#import "AssistController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *firstTeamTable;
@@ -16,18 +17,21 @@
 @property (weak, nonatomic) IBOutlet UIStepper *stepperPeriod;
 @property NSMutableArray *team1;
 @property NSMutableArray *team2;
+@property NSMutableArray *selectedTeam;
 - (IBAction)startGame:(id)sender;
 - (IBAction)stepperPeriod:(UIStepper *)sender;
 @end
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
     _stepperPeriod.hidden = YES;
+    
+    _firstTeamTable.allowsSelection = NO;
+    _secondTeamTable.allowsSelection = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +75,9 @@
             }
         }
         
+        _firstTeamTable.allowsSelection = YES;
+        _secondTeamTable.allowsSelection = YES;
+        
         
     }
     
@@ -80,9 +87,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    if(tableView == _firstTeamTable){
+        _selectedTeam = [[NSMutableArray alloc] initWithArray:_team1];
+    }
+    else if(tableView == _secondTeamTable){
+       _selectedTeam = [[NSMutableArray alloc] initWithArray:_team2];
+    }
+    
     CustomCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
     NSLog(@"%@", selectedCell.field);
+    
+    //Setup the array so we don't have the name of the player that scored the goal
+    [_selectedTeam removeObjectAtIndex:indexPath.row];
+    
+    NSLog(@"%lu", _selectedTeam.count);
+    
+    //I don't know, you tell me
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"go" sender:selectedCell];
+    });
+
     
 }
 
@@ -110,14 +136,16 @@
         [cell1.textField setUserInteractionEnabled:NO];
         [cell2.textField setUserInteractionEnabled:NO];
         
-        
         NSLog(@"Team 1 Player : %@", [_team1 objectAtIndex:i]);
         NSLog(@"Team 2 Player : %@", [_team2 objectAtIndex:i]);
         
-        
     }
     
-    
+}
+
+
+- (IBAction)unwindToApp:(UIStoryboardSegue*)sender{
+    [sender.sourceViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 //Update period method
@@ -127,4 +155,21 @@
     _period.text = [NSString stringWithFormat:@"%ld",value];
     
 }
+
+//For sending data to assist view
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([[segue identifier] isEqualToString:@"go"]) {
+        
+        // Get destination view
+        AssistController *vc = [segue destinationViewController];
+        
+        //Update assist table inside view
+        [vc updateAssistTable:_selectedTeam];
+        
+        
+        
+    }
+}
+
 @end

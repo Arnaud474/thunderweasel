@@ -17,6 +17,7 @@
 		8739DCF81F756D7F001C12F9 /* HockeyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8739DCF71F756D7F001C12F9 /* HockeyUITests.m */; };
 		8739DD061F757387001C12F9 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8739DD051F757387001C12F9 /* CustomCell.xib */; };
 		8739DD0A1F757528001C12F9 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8739DD091F757528001C12F9 /* CustomCell.m */; };
+		87B243D31F7D7A3F0001C4F4 /* AssistController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B243D21F7D7A3F0001C4F4 /* AssistController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		8739DD051F757387001C12F9 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCell.xib; path = ../CustomCell.xib; sourceTree = "<group>"; };
 		8739DD081F757528001C12F9 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		8739DD091F757528001C12F9 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		87B243D11F7D7A3F0001C4F4 /* AssistController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssistController.h; sourceTree = "<group>"; };
+		87B243D21F7D7A3F0001C4F4 /* AssistController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssistController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,7 @@
 		8739DCD11F756D7E001C12F9 /* Hockey */ = {
 			isa = PBXGroup;
 			children = (
+				87B243C31F7D5C4A0001C4F4 /* AssistViewController */,
 				8739DD051F757387001C12F9 /* CustomCell.xib */,
 				8739DCD51F756D7E001C12F9 /* AppDelegate.h */,
 				8739DCD61F756D7E001C12F9 /* AppDelegate.m */,
@@ -146,6 +150,15 @@
 				8739DCF91F756D7F001C12F9 /* Info.plist */,
 			);
 			path = HockeyUITests;
+			sourceTree = "<group>";
+		};
+		87B243C31F7D5C4A0001C4F4 /* AssistViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87B243D11F7D7A3F0001C4F4 /* AssistController.h */,
+				87B243D21F7D7A3F0001C4F4 /* AssistController.m */,
+			);
+			name = AssistViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87B243D31F7D7A3F0001C4F4 /* AssistController.m in Sources */,
 				8739DCDA1F756D7E001C12F9 /* ViewController.m in Sources */,
 				8739DCD71F756D7E001C12F9 /* AppDelegate.m in Sources */,
 				8739DD0A1F757528001C12F9 /* CustomCell.m in Sources */,
