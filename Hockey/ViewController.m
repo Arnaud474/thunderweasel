@@ -78,8 +78,15 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CustomCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    NSLog(@"%@", selectedCell.field);
+    
+}
 
-//Update period method
+//Start game
 - (IBAction)startGame:(id)sender {
     NSLog(@"Start Game");
     
@@ -99,6 +106,11 @@
         [_team1 addObject:cell1.field];
         [_team2 addObject:cell2.field];
         
+        //So we can select the row without editing when the game is started
+        [cell1.textField setUserInteractionEnabled:NO];
+        [cell2.textField setUserInteractionEnabled:NO];
+        
+        
         NSLog(@"Team 1 Player : %@", [_team1 objectAtIndex:i]);
         NSLog(@"Team 2 Player : %@", [_team2 objectAtIndex:i]);
         
@@ -108,6 +120,7 @@
     
 }
 
+//Update period method
 - (IBAction)stepperPeriod:(UIStepper *)sender {
     NSInteger value = sender.value;
     NSLog(@"%ld", value);

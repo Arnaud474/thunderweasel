@@ -10,6 +10,7 @@
 
 @interface CustomCell : UITableViewCell
 - (IBAction)changeText:(UITextField *)sender;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 @property NSString *field;
 
 @end
