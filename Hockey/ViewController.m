@@ -119,6 +119,15 @@
     
     
 }
+//End game
+- (IBAction)endGame:(id)sender {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Fin de la partie!" message:@"Affichage des trois etoiles" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 //Update period method
 - (IBAction)stepperPeriod:(UIStepper *)sender {
