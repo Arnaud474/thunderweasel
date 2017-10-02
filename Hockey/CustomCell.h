@@ -12,7 +12,7 @@
 - (IBAction)changeFirstName:(UITextField *)sender;
 - (IBAction)changeFamilyName:(UITextField *)sender;
 - (IBAction)changeNumber:(UITextField *)sender;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextField *goal;
 @property NSString *familyName;
 @property NSString *firstName;
 @property NSString *number;

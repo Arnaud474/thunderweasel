@@ -38,6 +38,7 @@
     
     _firstTeamTable.allowsSelection = NO;
     _secondTeamTable.allowsSelection = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -125,6 +126,10 @@
     //Init arrays
     _team1 = [[NSMutableArray alloc] init];
     _team2 = [[NSMutableArray alloc] init];
+    _firstName1 = [[NSMutableArray alloc] init];
+    _firstName2 = [[NSMutableArray alloc] init];
+    _number1 = [[NSMutableArray alloc] init];
+    _number2 = [[NSMutableArray alloc] init];
     
     for(NSInteger i=0;i<5;i++){
         
@@ -162,7 +167,8 @@
             message = [message stringByAppendingString:@"\r- le numéro de tous les joueurs"];
         }
         
-        if ([_team1 containsObject:cell1.number] || [_team2 containsObject:cell2.number]){
+        if ([_number1 containsObject: cell1.number] || [_number2 containsObject:cell2.number]){
+            NSLog(@"%@", cell1.number);
             missingInfo = YES;
             message = [message stringByAppendingString:@"\r- des numéros différents au sein d'une même équipe"];
         }
@@ -192,10 +198,15 @@
         [_number2 addObject:cell2.number];
         
         
-        
         //So we can select the row without editing when the game is started
-        [cell1.textField setUserInteractionEnabled:NO];
-        [cell2.textField setUserInteractionEnabled:NO];
+        [cell1.textPrenom setUserInteractionEnabled:NO];
+        [cell1.textNom setUserInteractionEnabled:NO];
+        [cell1.textNumero setUserInteractionEnabled:NO];
+        [cell1.goal setUserInteractionEnabled:NO];
+        [cell2.textPrenom setUserInteractionEnabled:NO];
+        [cell2.textNom setUserInteractionEnabled:NO];
+        [cell2.textNumero setUserInteractionEnabled:NO];
+        [cell2.goal setUserInteractionEnabled:NO];
         
         NSLog(@"Team 1 Player : %@", [_team1 objectAtIndex:i]);
         NSLog(@"Team 2 Player : %@", [_team2 objectAtIndex:i]);

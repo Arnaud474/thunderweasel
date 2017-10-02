@@ -12,6 +12,7 @@
 @synthesize firstName = _firstName;
 @synthesize familyName = _familyName;
 @synthesize number = _number;
+@synthesize goal = _goal;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -36,6 +37,7 @@
 }
 
 - (IBAction)changeNumber:(UITextField *)sender {
+    NSLog(@"%@", sender.text);
     _number = sender.text;
 }
 @end

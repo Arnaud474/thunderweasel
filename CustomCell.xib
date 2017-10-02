@@ -33,11 +33,11 @@
                             <action selector="changeFirstName:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="gJA-Bs-hqv"/>
                         </connections>
                     </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="+" borderStyle="line" placeholder=" #" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UuE-4D-nQr">
-                        <rect key="frame" x="411" y="0.0" width="39" height="40"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nom de famille" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H0y-lt-6HM">
+                        <rect key="frame" x="134" y="0.0" width="207" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        <color key="textColor" red="0.0064478416972253913" green="0.58498623704663211" blue="0.39949630770586619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <textInputTraits key="textInputTraits"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -45,7 +45,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="changeText:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="a0R-At-qWz"/>
+                            <action selector="changeFamilyName:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="57P-Df-u5V"/>
                         </connections>
                     </textField>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder=" #" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LOk-Fv-gRF">
@@ -63,25 +63,22 @@
                             <action selector="changeNumber:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="9zG-6O-XlK"/>
                         </connections>
                     </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nom de famille" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H0y-lt-6HM">
-                        <rect key="frame" x="134" y="0.0" width="207" height="40"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="+" borderStyle="line" placeholder=" #" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UuE-4D-nQr">
+                        <rect key="frame" x="411" y="0.0" width="39" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="textColor" red="0.0064478416972253913" green="0.58498623704663211" blue="0.39949630770586619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
                         <textInputTraits key="textInputTraits"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                 <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="changeFamilyName:" destination="VaO-Ch-LNZ" eventType="editingChanged" id="57P-Df-u5V"/>
-                        </connections>
                     </textField>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="textField" destination="H0y-lt-6HM" id="PxM-bY-IfN"/>
+                <outlet property="goal" destination="UuE-4D-nQr" id="V0O-Dz-gJq"/>
                 <outlet property="textNom" destination="H0y-lt-6HM" id="vma-RK-cXB"/>
                 <outlet property="textNumero" destination="LOk-Fv-gRF" id="f7l-Rd-zx0"/>
                 <outlet property="textPrenom" destination="Ch9-c8-oXw" id="wDJ-wp-9JP"/>
