@@ -15,6 +15,9 @@
 
 @implementation AssistController
 @synthesize players = _players;
+int counter = 0; //keep track of how many rows are selected
+int maxNum = 2; //Most cells allowed to be selected
+BOOL selectionArray[] = { NO, NO, NO, NO}; //Array used to know which player is selected
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,15 +51,56 @@
     return cell;
 }
 
+//Called when the user selects a row
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //If the cell isn't checked and there aren't the maximum allowed selected yet
+    if (cell.accessoryType != UITableViewCellAccessoryCheckmark)
+    {
+        //Don't do anything if the cell isn't checked and the maximum has been reached
+        if (counter < maxNum)
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            counter++;
+            selectionArray[indexPath.row] = YES;
+        }
+        return;
+    }
+    //If cell is checked and gets selected again, deselect it
+    else if(cell.accessoryType == UITableViewCellAccessoryCheckmark)
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        counter--;
+        selectionArray[indexPath.row] = NO;
+    }
+}
+
+-(BOOL*)getAssist {
+    return selectionArray;
+}
+
 -(void)updateAssistTable:(NSMutableArray *)newContent{
     
     NSLog(@"updateTable");
-    
     _players = newContent;
-    
+    counter = 0;
+    _assistTable.allowsMultipleSelection = YES;
     
     
     [_assistTable reloadData];
+}
+
+//called when the OK button is pressed
+- (IBAction)okPress:(id)sender {
+    NSLog(@"Ok");
+    
+    //Send the info to the controller
+    //NOT SURE WHAT IM DOING
+    performSegue(withIdentifier: "goal", sender: self);
+    
+    //Kill the pop-up
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

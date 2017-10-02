@@ -10,5 +10,6 @@
 
 @interface AssistController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 -(void) updateAssistTable:(NSMutableArray*)newContent;
+-(BOOL*)getAssist;
 @property NSMutableArray *players;
 @end

@@ -228,8 +228,13 @@
         
         //Update assist table inside view
         [vc updateAssistTable:_selectedTeam];
+    }
+    ///////NOT SURE WHAT IM DOING
+    if ([[segue identifier] isEqualToString:@"goal"]) {
         
-        
+        // Get destination view
+        AssistController *vc = [segue destinationViewController];
+        BOOL* pAssist = [vc getAssist];
         
     }
 }
