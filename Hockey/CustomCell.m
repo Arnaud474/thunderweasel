@@ -9,12 +9,16 @@
 #import "CustomCell.h"
 
 @implementation CustomCell
-@synthesize field = _field;
+@synthesize firstName = _firstName;
+@synthesize familyName = _familyName;
+@synthesize number = _number;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    _field = @"";
+    _firstName = @"";
+    _familyName = @"";
+    _number = @"";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -23,7 +27,15 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)changeText:(UITextField *)sender {
-    _field = sender.text;
+- (IBAction)changeFirstName:(UITextField *)sender {
+    _firstName = sender.text;
+}
+
+- (IBAction)changeFamilyName:(UITextField *)sender {
+    _familyName = sender.text;
+}
+
+- (IBAction)changeNumber:(UITextField *)sender {
+    _number = sender.text;
 }
 @end

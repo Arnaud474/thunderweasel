@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomCell : UITableViewCell
-- (IBAction)changeText:(UITextField *)sender;
+- (IBAction)changeFirstName:(UITextField *)sender;
+- (IBAction)changeFamilyName:(UITextField *)sender;
+- (IBAction)changeNumber:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-@property NSString *field;
+@property NSString *familyName;
+@property NSString *firstName;
+@property NSString *number;
+
+@property (weak, nonatomic) IBOutlet UITextField *textPrenom;
+
+@property (weak, nonatomic) IBOutlet UITextField *textNom;
+@property (weak, nonatomic) IBOutlet UITextField *textNumero;
 
 @end
 
