@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AssistController : UIViewController <UITableViewDelegate, UITableViewDataSource>
--(void) updateAssistTable:(NSMutableArray*)newContent;
+-(void) updateAssistTable:(NSMutableArray*)newContent :(int)hiddenPlayer;
 -(BOOL*)getAssist;
 @property NSMutableArray *players;
 @end

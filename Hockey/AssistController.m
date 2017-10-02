@@ -17,7 +17,8 @@
 @synthesize players = _players;
 int counter = 0; //keep track of how many rows are selected
 int maxNum = 2; //Most cells allowed to be selected
-BOOL selectionArray[] = { NO, NO, NO, NO}; //Array used to know which player is selected
+BOOL selectionArray[] = { NO, NO, NO, NO, NO}; //Array used to know which player is selected
+int hiddenPlayerId = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,28 +77,34 @@ BOOL selectionArray[] = { NO, NO, NO, NO}; //Array used to know which player is 
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float heightForRow = tableView.rowHeight;
+    
+    if(indexPath.row==hiddenPlayerId)
+        return 0;
+    else
+        return heightForRow;
+}
+
 -(BOOL*)getAssist {
     return selectionArray;
 }
 
--(void)updateAssistTable:(NSMutableArray *)newContent{
+-(void)updateAssistTable:(NSMutableArray *)newContent :(int)hiddenPlayer{
     
     NSLog(@"updateTable");
     _players = newContent;
     counter = 0;
     _assistTable.allowsMultipleSelection = YES;
-    
-    
-    [_assistTable reloadData];
+    for(int i=0; i < 5 ; i++)
+        selectionArray[i] = NO;
+    hiddenPlayerId = hiddenPlayer;
 }
 
 //called when the OK button is pressed
 - (IBAction)okPress:(id)sender {
     NSLog(@"Ok");
-    
-    //Send the info to the controller
-    //NOT SURE WHAT IM DOING
-    performSegue(withIdentifier: "goal", sender: self);
     
     //Kill the pop-up
     [self dismissViewControllerAnimated:YES completion:nil];

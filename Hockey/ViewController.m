@@ -26,6 +26,8 @@
 
 @implementation ViewController
 
+int selectedPlayer = -1;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -102,8 +104,8 @@
     NSLog(@"%@", selectedCell.field);
     
     //Setup the array so we don't have the name of the player that scored the goal
-    [_selectedTeam removeObjectAtIndex:indexPath.row];
-    
+    //[_selectedTeam removeObjectAtIndex:indexPath.row];
+    selectedPlayer = (int)indexPath.row;
     NSLog(@"%lu", _selectedTeam.count);
     
     //I don't know, you tell me
@@ -210,6 +212,11 @@
     [sender.sourceViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)getAssist:(UIStoryboardSegue*)sender{
+    AssistController *vc = sender.sourceViewController;
+    vc.getAssist;
+}
+
 //Update period method
 - (IBAction)stepperPeriod:(UIStepper *)sender {
     NSInteger value = sender.value;
@@ -227,7 +234,7 @@
         AssistController *vc = [segue destinationViewController];
         
         //Update assist table inside view
-        [vc updateAssistTable:_selectedTeam];
+        [vc updateAssistTable:_selectedTeam :selectedPlayer];
     }
     ///////NOT SURE WHAT IM DOING
     if ([[segue identifier] isEqualToString:@"goal"]) {
