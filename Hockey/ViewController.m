@@ -191,29 +191,46 @@
         //Adding fields to array
         [_team1 addObject:cell1.familyName];
         [_team2 addObject:cell2.familyName];
-        
         [_firstName1 addObject:cell1.firstName];
         [_firstName2 addObject:cell2.firstName];
         [_number1 addObject:cell1.number];
         [_number2 addObject:cell2.number];
+
+    }
+    
+    
+    for(NSInteger i=0;i<5;i++){
         
+        //Getting the cell at index
+        CustomCell *cell1 = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+        CustomCell *cell2 = [_secondTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
         
         //So we can select the row without editing when the game is started
         [cell1.textPrenom setUserInteractionEnabled:NO];
         [cell1.textNom setUserInteractionEnabled:NO];
         [cell1.textNumero setUserInteractionEnabled:NO];
-        [cell1.goal setUserInteractionEnabled:NO];
         [cell2.textPrenom setUserInteractionEnabled:NO];
         [cell2.textNom setUserInteractionEnabled:NO];
         [cell2.textNumero setUserInteractionEnabled:NO];
-        [cell2.goal setUserInteractionEnabled:NO];
         
         NSLog(@"Team 1 Player : %@", [_team1 objectAtIndex:i]);
         NSLog(@"Team 2 Player : %@", [_team2 objectAtIndex:i]);
-
+        
     }
-                 
+    
     _stepperPeriod.hidden = NO;
+    
+    UIAlertController* alertStart = [UIAlertController
+                                alertControllerWithTitle:@"DÉBUT DE LA PARTIE"
+                                message:@"Cliquer sur le joueur marquant pour ajouter un but"
+                                preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+    
+    [alertStart addAction:okAction];
+    [self presentViewController:alertStart animated:YES completion:nil];
+
     
 }
 
