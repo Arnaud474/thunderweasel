@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *firstTeamTable;
 @property (weak, nonatomic) IBOutlet UITableView *secondTeamTable;
 @property (weak, nonatomic) IBOutlet UILabel *period;
+@property (weak, nonatomic) IBOutlet UILabel *counterTeam1;
+@property (weak, nonatomic) IBOutlet UILabel *counterTeam2;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperPeriod;
 @property NSMutableArray *team1;
 @property NSMutableArray *team2;
@@ -31,6 +33,9 @@
 @implementation ViewController
 
 int selectedPlayer = -1;
+int selectedTable = -1;
+int team1Goals = 0;
+int team2Goals = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -99,10 +104,13 @@ int selectedPlayer = -1;
     
     if(tableView == _firstTeamTable){
         _selectedTeam = [[NSMutableArray alloc] initWithArray:_team1];
+        selectedTable = 0;
     }
     else if(tableView == _secondTeamTable){
        _selectedTeam = [[NSMutableArray alloc] initWithArray:_team2];
+        selectedTable = 1;
     }
+    
     
     CustomCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
@@ -141,7 +149,7 @@ int selectedPlayer = -1;
         NSString *message = @"Pour commencer la partie, entrez :";
         
         //Validation
-        if (!_firstTeamTitle.text.length || !_secondTeamTitle.text.length){
+        /*if (!_firstTeamTitle.text.length || !_secondTeamTitle.text.length){
             NSLog(@"patate");
             missingInfo = YES;
             message = [message stringByAppendingString:@"\r- les noms d'équipe"];
@@ -186,7 +194,7 @@ int selectedPlayer = -1;
             [self presentViewController:alert animated:YES completion:nil];
              return;
 
-        }
+        }*/
         
         //Adding fields to array
         [_team1 addObject:cell1.familyName];
@@ -239,14 +247,40 @@ int selectedPlayer = -1;
     [sender.sourceViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)getAssist:(UIStoryboardSegue*)sender{
-    AssistController *vc = sender.sourceViewController;
-    BOOL * tempArray = [vc getAssist];
+- (IBAction)registerGoal:(UIStoryboardSegue*)sender{
     
-    //DO SOME MAGIC WITH THE INFORMATION
+    BOOL* selected = [((AssistController *)sender.sourceViewController) getAssist];
     
-    //hide the pop-up
-    [vc dismissViewControllerAnimated:YES completion:nil];
+    //Get table view
+    if(selectedTable == 0){
+        UITableView * currentTable = _firstTeamTable;
+        team1Goals++;
+        _counterTeam1.text = [NSString stringWithFormat:@"%d", team1Goals];;
+    }
+    else if (selectedTable == 1){
+        UITableView * currentTable = _secondTeamTable;
+        team2Goals++;
+        _counterTeam2.text = [NSString stringWithFormat:@"%d", team2Goals];
+        
+    }
+    
+    CustomCell *goalDude = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedPlayer inSection: 0]];
+    
+    NSLog(@" Goal by %@ %@", goalDude.firstName, goalDude.familyName);
+    
+    for(int i = 0; i < 5; i++){
+        
+        //If the index was selected
+        if(selected[i]){
+            
+           CustomCell *cell = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+            
+           NSLog(@"Assisted by %@ %@", cell.firstName, cell.familyName);
+            
+        }
+        
+    }
+    
 }
 
 //Update period method
@@ -268,19 +302,7 @@ int selectedPlayer = -1;
         //Update assist table inside view
         [vc updateAssistTable:_selectedTeam :selectedPlayer];
     }
-    ///////NOT SURE WHAT IM DOING
-    if ([[segue identifier] isEqualToString:@"goal"]) {
-        
-        // Get destination view
-        AssistController *vc = [segue destinationViewController];
-        BOOL* pAssist = [vc getAssist];
-        
-        //DO MAGIC
-        
-        //hide the pop-up
-        [vc dismissViewControllerAnimated:YES completion:nil];
-        
-    }
+    
 }
 
 @end

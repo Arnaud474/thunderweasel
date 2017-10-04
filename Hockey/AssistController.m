@@ -102,15 +102,6 @@ int hiddenPlayerId = 0;
     hiddenPlayerId = hiddenPlayer;
 }
 
-//called when the OK button is pressed
-- (IBAction)okPress:(id)sender {
-    NSLog(@"Ok");
-    
-    //Send the segue
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"goal" sender:self];
-    });
-    
-}
+
 
 @end
