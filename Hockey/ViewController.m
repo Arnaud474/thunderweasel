@@ -17,6 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIStepper *stepperPeriod;
 @property NSMutableArray *team1;
 @property NSMutableArray *team2;
+@property NSMutableArray *firstName1;
+@property NSMutableArray *firstName2;
+@property NSMutableArray *number1;
+@property NSMutableArray *number2;
 @property NSMutableArray *selectedTeam;
 - (IBAction)startGame:(id)sender;
 - (IBAction)stepperPeriod:(UIStepper *)sender;
@@ -36,6 +40,7 @@ int selectedPlayer = -1;
     
     _firstTeamTable.allowsSelection = NO;
     _secondTeamTable.allowsSelection = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,7 +106,7 @@ int selectedPlayer = -1;
     
     CustomCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    NSLog(@"%@", selectedCell.field);
+    NSLog(@"%@", selectedCell.familyName);
     
     selectedPlayer = (int)indexPath.row;
     NSLog(@"%lu", _selectedTeam.count);
@@ -121,6 +126,10 @@ int selectedPlayer = -1;
     //Init arrays
     _team1 = [[NSMutableArray alloc] init];
     _team2 = [[NSMutableArray alloc] init];
+    _firstName1 = [[NSMutableArray alloc] init];
+    _firstName2 = [[NSMutableArray alloc] init];
+    _number1 = [[NSMutableArray alloc] init];
+    _number2 = [[NSMutableArray alloc] init];
     
     for(NSInteger i=0;i<5;i++){
         
@@ -128,80 +137,100 @@ int selectedPlayer = -1;
         CustomCell *cell1 = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
         CustomCell *cell2 = [_secondTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
         
+        bool missingInfo = NO;
+        NSString *message = @"Pour commencer la partie, entrez :";
+        
         //Validation
         if (!_firstTeamTitle.text.length || !_secondTeamTitle.text.length){
-            UIAlertController* alert = [UIAlertController
-                                        alertControllerWithTitle:@"Information manquante"
-                                        message:@"Veuillez entrer les noms d'équipe pour commencer la partie"
-                                        preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                            style:UIAlertActionStyleDefault
-                                                                          handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:errorValidationAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
-
+            NSLog(@"patate");
+            missingInfo = YES;
+            message = [message stringByAppendingString:@"\r- les noms d'équipe"];
+        
         }
         else if (_firstTeamTitle.text == _secondTeamTitle.text){
-            UIAlertController* alert = [UIAlertController
-                                        alertControllerWithTitle:@"Information erronée"
-                                        message:@"Veuillez entrer des noms d'équipe différents"
-                                        preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                            style:UIAlertActionStyleDefault
-                                                                          handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:errorValidationAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
+            missingInfo = YES;
+            message = [message stringByAppendingString:@"\r- des noms d'équipe différents"];
         }
-        else if (!cell1.field.length || !cell2.field.length){
+        
+        if (!cell1.firstName.length || !cell2.firstName.length){
+            missingInfo = YES;
+            message = [message stringByAppendingString:@"\r- le prénom de tous les joueurs"];
+        }
+        
+        if (!cell1.familyName.length || !cell2.familyName.length){
+            missingInfo = YES;
+            message = [message stringByAppendingString:@"\r- le nom de famille de tous les joueurs"];
+        }
+        
+        if (!cell1.number.length || !cell2.number.length || ![cell1.number intValue] || ![cell2.number intValue]){
+            missingInfo = YES;
+            message = [message stringByAppendingString:@"\r- le numéro de tous les joueurs"];
+        }
+        
+        if ([_number1 containsObject: cell1.number] || [_number2 containsObject:cell2.number]){
+            NSLog(@"%@", cell1.number);
+            missingInfo = YES;
+            message = [message stringByAppendingString:@"\r- des numéros différents au sein d'une même équipe"];
+        }
+        
+        if (missingInfo == YES){
             UIAlertController* alert = [UIAlertController
                                         alertControllerWithTitle:@"Information manquante"
-                                        message:@"Veuillez entrer tous les noms des joueurs pour commencer la partie"
+                                        message:message
                                         preferredStyle:UIAlertControllerStyleAlert];
-            
             UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
-                                                        style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction * action) {}];
-            
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action) {}];
+
             [alert addAction:errorValidationAction];
             [self presentViewController:alert animated:YES completion:nil];
-            return;
-        }
-        else if ([_team1 containsObject:cell1.field] || [_team2 containsObject:cell2.field]){
-            UIAlertController* alert = [UIAlertController
-                                        alertControllerWithTitle:@"Information erronée"
-                                        message:@"Veuillez entrer des noms de joueurs différents au sein d'une même équipe"
-                                        preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                            style:UIAlertActionStyleDefault
-                                                                          handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:errorValidationAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
-            
+             return;
+
         }
         
         //Adding fields to array
-        [_team1 addObject:cell1.field];
-        [_team2 addObject:cell2.field];
+        [_team1 addObject:cell1.familyName];
+        [_team2 addObject:cell2.familyName];
+        [_firstName1 addObject:cell1.firstName];
+        [_firstName2 addObject:cell2.firstName];
+        [_number1 addObject:cell1.number];
+        [_number2 addObject:cell2.number];
+
+    }
+    
+    
+    for(NSInteger i=0;i<5;i++){
+        
+        //Getting the cell at index
+        CustomCell *cell1 = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+        CustomCell *cell2 = [_secondTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
         
         //So we can select the row without editing when the game is started
-        [cell1.textField setUserInteractionEnabled:NO];
-        [cell2.textField setUserInteractionEnabled:NO];
+        [cell1.textPrenom setUserInteractionEnabled:NO];
+        [cell1.textNom setUserInteractionEnabled:NO];
+        [cell1.textNumero setUserInteractionEnabled:NO];
+        [cell2.textPrenom setUserInteractionEnabled:NO];
+        [cell2.textNom setUserInteractionEnabled:NO];
+        [cell2.textNumero setUserInteractionEnabled:NO];
         
         NSLog(@"Team 1 Player : %@", [_team1 objectAtIndex:i]);
         NSLog(@"Team 2 Player : %@", [_team2 objectAtIndex:i]);
-
+        
     }
-                 
+    
     _stepperPeriod.hidden = NO;
+    
+    UIAlertController* alertStart = [UIAlertController
+                                alertControllerWithTitle:@"DÉBUT DE LA PARTIE"
+                                message:@"Cliquer sur le joueur marquant pour ajouter un but"
+                                preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+    
+    [alertStart addAction:okAction];
+    [self presentViewController:alertStart animated:YES completion:nil];
+
     
 }
 
