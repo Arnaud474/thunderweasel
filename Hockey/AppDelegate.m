@@ -16,7 +16,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    UIViewController* mainController = (UIViewController*)  self.window.rootViewController;
+    
     // Override point for customization after application launch.
+    UIImageView*imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"default2.jpg"]];
+    [[mainController view] addSubview:imageView];
+    [[mainController view] bringSubviewToFront:imageView];
+    
+    // as usual
+    [self.window makeKeyAndVisible];
+    
+    //now fade out splash image
+    [UIView transitionWithView:self.window duration:1.0f options:UIViewAnimationOptionTransitionNone animations:^(void){imageView.alpha=0.0f;} completion:^(BOOL finished){[imageView removeFromSuperview];}];
+    
     return YES;
 }
 
