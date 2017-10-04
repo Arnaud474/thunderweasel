@@ -106,8 +106,11 @@ int hiddenPlayerId = 0;
 - (IBAction)okPress:(id)sender {
     NSLog(@"Ok");
     
-    //Kill the pop-up
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //Send the segue
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"goal" sender:self];
+    });
+    
 }
 
 @end

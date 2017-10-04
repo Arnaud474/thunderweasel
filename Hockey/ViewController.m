@@ -103,8 +103,6 @@ int selectedPlayer = -1;
     
     NSLog(@"%@", selectedCell.field);
     
-    //Setup the array so we don't have the name of the player that scored the goal
-    //[_selectedTeam removeObjectAtIndex:indexPath.row];
     selectedPlayer = (int)indexPath.row;
     NSLog(@"%lu", _selectedTeam.count);
     
@@ -214,7 +212,12 @@ int selectedPlayer = -1;
 
 - (IBAction)getAssist:(UIStoryboardSegue*)sender{
     AssistController *vc = sender.sourceViewController;
-    vc.getAssist;
+    BOOL * tempArray = [vc getAssist];
+    
+    //DO SOME MAGIC WITH THE INFORMATION
+    
+    //hide the pop-up
+    [vc dismissViewControllerAnimated:YES completion:nil];
 }
 
 //Update period method
@@ -242,6 +245,11 @@ int selectedPlayer = -1;
         // Get destination view
         AssistController *vc = [segue destinationViewController];
         BOOL* pAssist = [vc getAssist];
+        
+        //DO MAGIC
+        
+        //hide the pop-up
+        [vc dismissViewControllerAnimated:YES completion:nil];
         
     }
 }
