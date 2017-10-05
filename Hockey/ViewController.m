@@ -24,6 +24,7 @@
 @property NSMutableArray *number1;
 @property NSMutableArray *number2;
 @property NSMutableArray *selectedTeam;
+@property NSMutableArray * gameLog;
 - (IBAction)startGame:(id)sender;
 - (IBAction)stepperPeriod:(UIStepper *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *firstTeamTitle;
@@ -46,11 +47,61 @@ int team2Goals = 0;
     _firstTeamTable.allowsSelection = NO;
     _secondTeamTable.allowsSelection = NO;
     
+    _gameLog = [[NSMutableArray alloc] init];
+    
+    // Add arrays of zeros to each arrays in each team
+    
+    NSMutableArray *team;
+    NSMutableArray *player;
+    
+    for(int i = 0; i < 2; i++){
+        
+        team = [[NSMutableArray alloc] init];
+
+        for(int j = 0; j < 5; j++){
+        
+            NSMutableArray *player = [[NSMutableArray alloc] init];
+            
+            [player addObject: [NSNumber numberWithInt:0]];
+            [player addObject: [NSNumber numberWithInt:0]];
+            
+            [team addObject:player];
+        
+        }
+        
+        [_gameLog addObject: [NSMutableArray arrayWithArray:team]];
+    }
+    
+    
+    //[self printGameLog];
+    
+    
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)printGameLog{
+    
+    NSLog(@"Game Log");
+    
+    for(NSMutableArray* team in _gameLog){
+        
+        NSLog(@"%lu", [team count]);
+    
+        for(NSMutableArray* player in team){
+            
+            NSLog(@"Goals : %d", [[player objectAtIndex:0] intValue]);
+            NSLog(@"Assists : %d", [[player objectAtIndex:1] intValue]);
+        }
+        
+        
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -251,20 +302,27 @@ int team2Goals = 0;
     
     BOOL* selected = [((AssistController *)sender.sourceViewController) getAssist];
     
+    UITableView * currentTable;
+    
     //Get table view
     if(selectedTable == 0){
-        UITableView * currentTable = _firstTeamTable;
+        currentTable = _firstTeamTable;
         team1Goals++;
         _counterTeam1.text = [NSString stringWithFormat:@"%d", team1Goals];;
     }
     else if (selectedTable == 1){
-        UITableView * currentTable = _secondTeamTable;
+        currentTable = _secondTeamTable;
         team2Goals++;
         _counterTeam2.text = [NSString stringWithFormat:@"%d", team2Goals];
         
     }
     
-    CustomCell *goalDude = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedPlayer inSection: 0]];
+    CustomCell *goalDude = [currentTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedPlayer inSection: 0]];
+    
+    
+    NSNumber *g = [NSNumber numberWithInt:[[[[_gameLog objectAtIndex:selectedTable] objectAtIndex:selectedPlayer] objectAtIndex:0] intValue] + 1];
+    
+    [[[_gameLog objectAtIndex:selectedTable] objectAtIndex:selectedPlayer] replaceObjectAtIndex:0 withObject:g];
     
     NSLog(@" Goal by %@ %@", goalDude.firstName, goalDude.familyName);
     
@@ -273,13 +331,19 @@ int team2Goals = 0;
         //If the index was selected
         if(selected[i]){
             
-           CustomCell *cell = [_firstTeamTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
+           CustomCell *cell = [currentTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection: 0]];
             
            NSLog(@"Assisted by %@ %@", cell.firstName, cell.familyName);
+           
+            NSNumber *a = [NSNumber numberWithInt:[[[[_gameLog objectAtIndex:selectedTable] objectAtIndex:i] objectAtIndex:1] intValue] + 1];
+            
+            [[[_gameLog objectAtIndex:selectedTable] objectAtIndex:i] replaceObjectAtIndex:1 withObject:a];
             
         }
         
     }
+    
+    [self printGameLog];
     
 }
 
