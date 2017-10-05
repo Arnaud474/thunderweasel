@@ -97,14 +97,14 @@
                                 <rect key="frame" x="804" y="20" width="177" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <color key="textColor" red="0.0" green="0.33822248581964143" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOd-8a-mbK">
-                                <rect key="frame" x="487" y="736" width="139" height="65"/>
+                                <rect key="frame" x="458" y="736" width="196" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="Start"/>
+                                <state key="normal" title="Débuter"/>
                                 <connections>
                                     <action selector="startGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OJd-og-o85"/>
                                 </connections>
@@ -152,12 +152,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jck-vD-17E">
-                                <rect key="frame" x="487" y="736" width="139" height="65"/>
+                                <rect key="frame" x="458" y="736" width="196" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="End"/>
+                                <state key="normal" title="Terminer"/>
                                 <connections>
                                     <action selector="endGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o9L-6D-FY1"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="bV1-Pl-x13">
+                                <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czA-Rf-8hm">
+                                <rect key="frame" x="319" y="655" width="475" height="159"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <state key="normal" title="Débuter"/>
+                                <connections>
+                                    <action selector="killSplash:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9X-J0-S32"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -172,6 +185,8 @@
                         <outlet property="period" destination="QDt-Wl-MNG" id="oGk-Sh-Mdy"/>
                         <outlet property="secondTeamTable" destination="s36-2G-ehv" id="7eA-ZS-vxa"/>
                         <outlet property="secondTeamTitle" destination="0Z8-4a-iOf" id="Usd-Bb-1xP"/>
+                        <outlet property="splashButton" destination="czA-Rf-8hm" id="qRj-QM-pY5"/>
+                        <outlet property="splashImage" destination="bV1-Pl-x13" id="oqC-oM-Ypt"/>
                         <outlet property="stepperPeriod" destination="TsX-nK-N5E" id="KrP-o7-Ku4"/>
                         <segue destination="uN1-uV-HFV" kind="presentation" identifier="go" modalPresentationStyle="formSheet" id="u4m-Ei-z1c"/>
                     </connections>
@@ -196,7 +211,7 @@
                                 <rect key="frame" x="428" y="359" width="92" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="Annuler"/>
                                 <connections>
                                     <segue destination="mS5-jV-S3d" kind="unwind" unwindAction="unwindToApp:" id="D6x-Cs-2dD"/>
                                 </connections>
@@ -261,4 +276,7 @@
             <point key="canvasLocation" x="620.50359712230215" y="108.63309352517986"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splash.jpg" width="1920" height="1200"/>
+    </resources>
 </document>

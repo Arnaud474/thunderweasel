@@ -18,6 +18,7 @@
 		8739DD061F757387001C12F9 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8739DD051F757387001C12F9 /* CustomCell.xib */; };
 		8739DD0A1F757528001C12F9 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8739DD091F757528001C12F9 /* CustomCell.m */; };
 		87B243D31F7D7A3F0001C4F4 /* AssistController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B243D21F7D7A3F0001C4F4 /* AssistController.m */; };
+		87CBE7941F869A82007D7AA6 /* splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE7931F869A82007D7AA6 /* splash.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		8739DD091F757528001C12F9 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		87B243D11F7D7A3F0001C4F4 /* AssistController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssistController.h; sourceTree = "<group>"; };
 		87B243D21F7D7A3F0001C4F4 /* AssistController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssistController.m; sourceTree = "<group>"; };
+		87CBE7931F869A82007D7AA6 /* splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splash.jpg; path = Hockey/splash.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		8739DCC61F756D7E001C12F9 = {
 			isa = PBXGroup;
 			children = (
+				87CBE7931F869A82007D7AA6 /* splash.jpg */,
 				8739DCD11F756D7E001C12F9 /* Hockey */,
 				8739DCEB1F756D7F001C12F9 /* HockeyTests */,
 				8739DCF61F756D7F001C12F9 /* HockeyUITests */,
@@ -109,6 +112,7 @@
 		8739DCD11F756D7E001C12F9 /* Hockey */ = {
 			isa = PBXGroup;
 			children = (
+				87CBE7921F869A4D007D7AA6 /* Assets */,
 				87B243C31F7D5C4A0001C4F4 /* AssistViewController */,
 				8739DD051F757387001C12F9 /* CustomCell.xib */,
 				8739DCD51F756D7E001C12F9 /* AppDelegate.h */,
@@ -159,6 +163,13 @@
 				87B243D21F7D7A3F0001C4F4 /* AssistController.m */,
 			);
 			name = AssistViewController;
+			sourceTree = "<group>";
+		};
+		87CBE7921F869A4D007D7AA6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 				8739DCDF1F756D7E001C12F9 /* Assets.xcassets in Resources */,
 				8739DD061F757387001C12F9 /* CustomCell.xib in Resources */,
 				8739DCDD1F756D7E001C12F9 /* Main.storyboard in Resources */,
+				87CBE7941F869A82007D7AA6 /* splash.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

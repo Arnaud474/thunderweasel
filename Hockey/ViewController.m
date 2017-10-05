@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *counterTeam1;
 @property (weak, nonatomic) IBOutlet UILabel *counterTeam2;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperPeriod;
+@property (weak, nonatomic) IBOutlet UIImageView *splashImage;
+@property (weak, nonatomic) IBOutlet UIButton *splashButton;
 @property NSMutableArray *team1;
 @property NSMutableArray *team2;
 @property NSMutableArray *firstName1;
@@ -24,6 +26,7 @@
 @property NSMutableArray *number1;
 @property NSMutableArray *number2;
 @property NSMutableArray *selectedTeam;
+- (IBAction)killSplash:(id)sender;
 @property NSMutableArray * gameLog;
 - (IBAction)startGame:(id)sender;
 - (IBAction)stepperPeriod:(UIStepper *)sender;
@@ -138,7 +141,7 @@ int team2Goals = 0;
                 cell.backgroundColor=[UIColor whiteColor];
             }
             else{
-                cell.backgroundColor=[UIColor blueColor];
+                cell.backgroundColor=[UIColor cyanColor];
             }
         }
         
@@ -258,6 +261,7 @@ int team2Goals = 0;
         [_number2 addObject:cell2.number];
         
         [sender setHidden:YES];
+        
 
     }
     
@@ -362,7 +366,7 @@ int team2Goals = 0;
         [_endButton setHidden:NO];
     }
     else{
-        
+        [_endButton setHidden:YES];
     }
     
 }
@@ -473,5 +477,9 @@ int team2Goals = 0;
     [alert addAction:errorValidationAction];
     [self presentViewController:alert animated:YES completion:nil];
     
+}
+- (IBAction)killSplash:(id)sender {
+    [_splashImage setHidden:YES];
+    [_splashButton setHidden:YES];
 }
 @end
