@@ -151,12 +151,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jck-vD-17E">
+                                <rect key="frame" x="487" y="736" width="139" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="End"/>
+                                <connections>
+                                    <action selector="endGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o9L-6D-FY1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="counterTeam1" destination="ecZ-AV-Yrp" id="waO-24-O3m"/>
                         <outlet property="counterTeam2" destination="Kr9-rY-4gQ" id="R0u-4p-B8y"/>
+                        <outlet property="endButton" destination="jck-vD-17E" id="VEe-BL-1ZH"/>
                         <outlet property="firstTeamTable" destination="Cv1-40-Ruc" id="jEO-oD-zpP"/>
                         <outlet property="firstTeamTitle" destination="X7G-v9-QI6" id="cP6-QB-90X"/>
                         <outlet property="period" destination="QDt-Wl-MNG" id="oGk-Sh-Mdy"/>

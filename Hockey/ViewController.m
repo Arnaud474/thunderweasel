@@ -27,6 +27,8 @@
 @property NSMutableArray * gameLog;
 - (IBAction)startGame:(id)sender;
 - (IBAction)stepperPeriod:(UIStepper *)sender;
+- (IBAction)endGame:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *endButton;
 @property (weak, nonatomic) IBOutlet UITextField *firstTeamTitle;
 @property (weak, nonatomic) IBOutlet UITextField *secondTeamTitle;
 @end
@@ -246,7 +248,7 @@ int team2Goals = 0;
              return;
 
         }*/
-        
+    
         //Adding fields to array
         [_team1 addObject:cell1.familyName];
         [_team2 addObject:cell2.familyName];
@@ -254,6 +256,8 @@ int team2Goals = 0;
         [_firstName2 addObject:cell2.firstName];
         [_number1 addObject:cell1.number];
         [_number2 addObject:cell2.number];
+        
+        [sender setHidden:YES];
 
     }
     
@@ -353,6 +357,14 @@ int team2Goals = 0;
     NSLog(@"%ld", value);
     _period.text = [NSString stringWithFormat:@"%ld",value];
     
+    //Last period
+    if(value == 3){
+        [_endButton setHidden:NO];
+    }
+    else{
+        
+    }
+    
 }
 
 //For sending data to assist view
@@ -369,4 +381,97 @@ int team2Goals = 0;
     
 }
 
+- (CustomCell *)getPlayerInfo:(NSMutableArray*)indexes{
+    
+    UITableView * currentTable;
+    
+    if([[indexes objectAtIndex:0] intValue] == 0){
+        currentTable = _firstTeamTable;
+    }
+    else if ([[indexes objectAtIndex:0] intValue] == 1){
+        currentTable = _secondTeamTable;
+    }
+
+    CustomCell *cell = [currentTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[indexes objectAtIndex:1] intValue] inSection: 0]];
+    
+    return cell;
+}
+
+
+- (IBAction)endGame:(id)sender {
+    NSLog(@"Show Score screen here");
+    
+    // Calculate stuff here
+    NSMutableArray *tops = [[NSMutableArray alloc] init];
+    NSMutableArray *sortedArray;
+    int points;
+    int teamIndex = 0;
+    int playerIndex = 0;
+    
+    // Iterate over each team
+    for(NSMutableArray *team in _gameLog){
+        
+        playerIndex = 0;
+        
+        for(NSMutableArray *player in team){
+            
+            // Reset count
+            points = 0;
+            
+            //Goals
+            points += [[player objectAtIndex:0] intValue];
+            //Assists
+            points += [[player objectAtIndex:1] intValue];
+
+            NSLog(@"Points : %d", points);
+            
+            [tops addObject:  [NSMutableArray arrayWithObjects: [NSNumber numberWithInt:teamIndex], [NSNumber numberWithInt:playerIndex] , [NSNumber numberWithInt:points], nil]];
+            
+            playerIndex++;
+        }
+        
+        teamIndex++;
+    }
+    
+    //Sort stuff here
+    sortedArray = [[tops sortedArrayUsingComparator: ^ NSComparisonResult (id obj1, id obj2)
+    {
+        return [[obj1 objectAtIndex:2] intValue] <= [[obj2 objectAtIndex:2] intValue];
+    } ] mutableCopy];
+    
+    
+    
+    CustomCell *cell = [self getPlayerInfo: [sortedArray objectAtIndex:0]];
+    
+    teamIndex = [[[sortedArray objectAtIndex:0] objectAtIndex:0] intValue];
+    playerIndex = [[[sortedArray objectAtIndex:0] objectAtIndex:1] intValue];
+    
+    NSString *etoile1 = [NSString stringWithFormat:@"%@ %@ %@ %d B %d A", cell.firstName, cell.familyName, cell.number, [[[[_gameLog objectAtIndex:teamIndex] objectAtIndex:playerIndex] objectAtIndex:0] intValue], [[[[_gameLog objectAtIndex:teamIndex] objectAtIndex:playerIndex] objectAtIndex:1] intValue]];
+    cell = [self getPlayerInfo: [sortedArray objectAtIndex:1]];
+    
+    teamIndex = [[[sortedArray objectAtIndex:1] objectAtIndex:0] intValue];
+    playerIndex = [[[sortedArray objectAtIndex:1] objectAtIndex:1] intValue];
+    
+    NSString *etoile2 = [NSString stringWithFormat:@"%@ %@ %@ %d B %d A", cell.firstName, cell.familyName, cell.number, [[[[_gameLog objectAtIndex:teamIndex] objectAtIndex:playerIndex] objectAtIndex:0] intValue], [[[[_gameLog objectAtIndex:teamIndex] objectAtIndex:playerIndex] objectAtIndex:1] intValue]];
+    cell = [self getPlayerInfo: [sortedArray objectAtIndex:2]];
+                                                                                                                                                                                                                    
+    teamIndex = [[[sortedArray objectAtIndex:2] objectAtIndex:0] intValue];
+    playerIndex = [[[sortedArray objectAtIndex:2] objectAtIndex:1] intValue];
+                                                                                                                                                                                                                       
+    NSString *etoile3 = [NSString stringWithFormat:@"%@ %@ %@ %d B %d A", cell.firstName, cell.familyName, cell.number, [[[[_gameLog objectAtIndex:teamIndex] objectAtIndex:playerIndex] objectAtIndex:0] intValue], [[[[_gameLog objectAtIndex:teamIndex] objectAtIndex:playerIndex] objectAtIndex:1] intValue]];
+
+    NSString *stars = [NSString stringWithFormat: @"1. %@\n 2. %@\n 3. %@", etoile1, etoile2, etoile3];
+    
+    UIAlertController* alert = [UIAlertController
+                                alertControllerWithTitle:@"Trois Étoiles"
+                                message:stars
+                                preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* errorValidationAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:errorValidationAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
 @end
